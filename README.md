@@ -1,10 +1,8 @@
-=======
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
-
 
 In the project directory, you can run:
 
@@ -71,4 +69,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
-test
+###
+
+En tillfällig lokal json-db är adderad för testning. För att köra den och simulera en fungerande backend
+
+Kör ### `json-server --watch db.json --port 5000`
+
+Sedan ### `npm start` för att köra projektet med en lokal db.json.

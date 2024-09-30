@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john@example.com"
+    },
+    {
+      "id": "2",
+      "title": "Jane Doe",
+      "content": "jane@example.com"
+    },
+    {
+      "id": "9b15",
+      "title": "Ett gammalt dokument",
+      "content": "Nu har det gått för långt."
+    },
+    {
+      "id": "8254",
+      "title": "asdasdasd",
+      "content": "asdasdasdasdasd"
+    },
+    {
+      "id": "d353",
+      "title": "Nu blir det ett nytt dokument",
+      "content": "Detta är en react app! Vi får se hur den fungerar."
+    },
+    {
+      "id": "e484",
+      "title": "Första dokumentet",
+      "content": "Hej, nu testar jag att lägga till ett dokument"
+    }
+  ]
+}
