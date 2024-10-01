@@ -12,7 +12,7 @@ const Read = () => {
 
   const fetchData = async () => {
     try {
-      const result = await axios.get('http://localhost:5000/data');
+      const result = await axios.get('http://localhost:1337');
       setData(result.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -20,8 +20,8 @@ const Read = () => {
   };
 
   // Function to navigate to the edit page
-  const editDocument = (id) => {
-    navigate(`/update/${id}`);
+  const editDocument = (_id) => {
+    navigate(`/update/${_id}`);
   };
 
   return (
@@ -40,13 +40,13 @@ const Read = () => {
         <tbody>
           {/* Loop through data to generate table rows */}
           {data.map((doc) => (
-            <tr key={doc.id}>
-              <td>{doc.id}</td>
+            <tr key={doc._id}>
+              <td>{doc._id}</td>
               <td>{doc.title || '"saknas"'}</td>
               <td>{doc.content || '"saknas"'}</td>
               
               <td>
-                <button onClick={() => editDocument(doc.id)} style={{ cursor: 'pointer' }}>
+                <button onClick={() => editDocument(doc._id)} style={{ cursor: 'pointer' }}>
                   Redigera
                 </button>
               </td>

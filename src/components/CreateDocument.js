@@ -18,10 +18,11 @@ const CreateDocument = ({ refreshData }) => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Document to be added (frontend):", document);
 
     try {
       // Send POST request to backend API (adjust URL as needed)
-      await axios.post('http://localhost:5000/data', document);
+      await axios.post('http://localhost:1337', document);
       
       // Optionally, refresh data or reset form
       setDocument({ title: '', content: '' });

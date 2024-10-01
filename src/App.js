@@ -20,8 +20,8 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/home" element={<ReadDocument />} />
-          <Route path="/document/:id" element={<ReadDocument />} />
-          <Route path="/update/:id" element={<UpdateDocument />} />
+          <Route path="/document/:_id" element={<ReadDocument />} />
+          <Route path="/update/:_id" element={<UpdateDocument />} />
           <Route path="/create" element={<CreateDocument />} />
         </Routes>
         <Footer />
