@@ -12,7 +12,7 @@ const Read = () => {
 
   const fetchData = async () => {
     try {
-      const result = await axios.get('http://localhost:1337');
+      const result = await axios.get('https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net');
       setData(result.data);
     } catch (error) {
       console.error('Error fetching data:', error);

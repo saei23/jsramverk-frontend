@@ -18,7 +18,7 @@ const UpdateDocument = () => {
   // Hämta dokument från servern
   const fetchDocument = async () => {
     try {
-      const result = await axios.get(`http://localhost:1337/${_id}`);
+      const result = await axios.get(`https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/${_id}`);
       setDocument(result.data); 
     } catch (error) {
       console.error('Error fetching document:', error);
@@ -40,7 +40,7 @@ const UpdateDocument = () => {
     console.log("Document ID to update (frontend):", _id); // Check `_id` before making PUT request
     try {
       // Skicka PUT-förfrågan för att uppdatera dokumentet
-      await axios.put(`http://localhost:1337/${_id}`, document);
+      await axios.put(`https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/${_id}`, document);
       alert('Document updated successfully!');
       navigate(`/document/${_id}`); // Navigera till dokumentets detaljsida efter uppdatering
     } catch (error) {
@@ -56,7 +56,7 @@ const UpdateDocument = () => {
 
     try {
       // Skicka DELETE-förfrågan för att ta bort dokumentet
-      await axios.delete(`http://localhost:1337/${_id}`);
+      await axios.delete(`https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/${_id}`);
       alert('Document deleted successfully!');
       navigate('/home'); // Navigera tillbaka till hemsidan efter radering
     } catch (error) {

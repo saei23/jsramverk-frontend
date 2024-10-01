@@ -22,7 +22,7 @@ const CreateDocument = ({ refreshData }) => {
 
     try {
       // Send POST request to backend API (adjust URL as needed)
-      await axios.post('http://localhost:1337', document);
+      await axios.post('https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net', document);
       
       // Optionally, refresh data or reset form
       setDocument({ title: '', content: '' });
