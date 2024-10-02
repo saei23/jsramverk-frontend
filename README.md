@@ -71,10 +71,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ###
 
+-------------------------------------------------------
+
 En tillfällig lokal json-db är adderad för testning. För att köra den och simulera en fungerande backend.
 
-(Denna kan ignoreras nu när backend är på plats)
-Kör ### `json-server --watch db.json --port 5000`
+(Detta steg kan ignoreras nu när backend är på plats
+Kör ### `json-server --watch db.json --port 5000`)
 
 Sedan ### `npm start` för att köra projektet.
 -------------------------------------------------------
