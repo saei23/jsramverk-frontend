@@ -76,5 +76,5 @@ En tillfällig lokal json-db är adderad för testning. För att köra den och s
 (Denna kan ignoreras nu när backend är på plats)
 Kör ### `json-server --watch db.json --port 5000`
 
-
 Sedan ### `npm start` för att köra projektet.
+-------------------------------------------------------
