@@ -66,41 +66,77 @@ code {
 .nav-links a:hover {
   background-color: #b8b8b8;
 }
-table {
+.table-container {
   width: 80%;
-  margin: 20px auto;
-  border-collapse: collapse;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-  font-family: 'Arial', sans-serif;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
   background-color: #ffffff;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
+.table-container h3 {
+  text-align: center;
+  color: #282c34;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
 
-th {
-  background-color: #97bfdf;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden; /* Prevent border-radius clipping */
+}
+
+thead {
+  background-color: #60a1d6;
   color: white;
+}
+
+th, td {
   padding: 12px 15px;
   text-align: left;
 }
 
-
-td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #ddd;
-}
-
-
-tr:hover {
-  background-color: #f2f2f2;
-}
-
-
-tbody tr:nth-child(odd) {
-  background-color: #f9f9f9;
+th {
+  font-weight: bold;
 }
 
 tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tbody tr:nth-child(odd) {
   background-color: #ffffff;
+}
+
+tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #60a1d6;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #004da0;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 
@@ -114,5 +150,52 @@ tbody tr:nth-child(even) {
   color: white;
   font-size: 14px;
   text-align: center;
+}
+
+.create-document {
+  width: 80%;
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.create-document h2 {
+  text-align: center;
+  color: #282c34;
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+  font-size: 1rem;
+}
+
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+}
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #97bfdf;
+  box-shadow: 0 0 5px rgba(151, 191, 223, 0.5);
 }
 

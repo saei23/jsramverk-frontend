@@ -66,8 +66,8 @@ const UpdateDocument = () => {
   };
 
   return (
-    <div className="update-document">
-      <h2>Update Document</h2>
+    <div className="create-document">
+      <h2>Uppdatera dokument</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">Title:</label>

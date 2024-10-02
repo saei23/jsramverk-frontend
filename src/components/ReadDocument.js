@@ -25,36 +25,33 @@ const Read = () => {
   };
 
   return (
-    <div>
-      <h3>Alla dokument i databasen</h3>
-      {/* Render a table instead of JSON */}
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Content</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {/* Loop through data to generate table rows */}
-          {data.map((doc) => (
-            <tr key={doc._id}>
-              <td>{doc._id}</td>
-              <td>{doc.title || '"saknas"'}</td>
-              <td>{doc.content || '"saknas"'}</td>
-              
-              <td>
-                <button onClick={() => editDocument(doc._id)} style={{ cursor: 'pointer' }}>
-                  Redigera
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+<div className="table-container">
+  <h3></h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Content</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {data.map((doc) => (
+        <tr key={doc._id}>
+          <td>{doc._id}</td>
+          <td>{doc.title || '"saknas"'}</td>
+          <td>{doc.content || '"saknas"'}</td>
+          <td>
+            <button onClick={() => editDocument(doc._id)} style={{ cursor: 'pointer' }}>
+              Redigera
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
   );
 };
 
