@@ -73,12 +73,25 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 -------------------------------------------------------
 
+
+### Tillfällig test-databas
+
 En tillfällig lokal json-db är adderad för testning. För att köra den och simulera en fungerande backend.
 
 (Detta steg kan ignoreras nu när backend är på plats
 Kör ### `json-server --watch db.json --port 5000`)
 
-Sedan ### `npm start` för att köra projektet.
+
+### Testning med reacts egna verktyg
+
+npm test kördes för att se hur test-verktyget fungerar.
+
+Vi skapade en Header.test.js för att testa Header.js.
+Flera tester för komponenterna kommer att läggas till under vidareutveckling.
+
+
+### `npm start` 
+Detta kommando startar projektet lokalt.
 -------------------------------------------------------
 
 ### Driftsättning av frontend
