@@ -80,3 +80,25 @@ Kör ### `json-server --watch db.json --port 5000`)
 
 Sedan ### `npm start` för att köra projektet.
 -------------------------------------------------------
+
+### Driftsättning av frontend
+
+Körde npm run build för att skapa en build-katalog
+
+Körde kommandot:
+
+### `rsync -av --delete build/ AKRONYM@ssh.student.bth.se:www/editor`
+
+Adderade till scripts för enklare deployment:
+
+"scripts": {
+
+  "deploy": "npm run build && rsync -av --delete build/ AKRONYM@ssh.student.bth.se:www/editor"
+
+}
+Deploy görs nu med 
+### `npm run deploy`
+
+Akronym ersätts med den användare som deployar till studentservern.
+
+
