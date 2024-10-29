@@ -10,10 +10,29 @@ const Read = () => {
     fetchData();
   }, []);
 
+  // GraphQL endpoint URL
+  const graphqlEndpoint = 'http://localhost:1337/graphql'; // Replace with your actual GraphQL endpoint
+
+  // Define the GraphQL query as a string
+  const GRAPHQL_QUERY = `
+    query {
+      documents {
+        _id
+        title
+        content
+      }
+    }
+  `;
+
+  // Function to fetch data using GraphQL
   const fetchData = async () => {
     try {
-      const result = await axios.get('https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net');
-      setData(result.data);
+      const result = await axios.post(graphqlEndpoint, {
+        query: GRAPHQL_QUERY,
+      });
+
+      // Update the data state with the fetched documents
+      setData(result.data.data.documents);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -25,33 +44,32 @@ const Read = () => {
   };
 
   return (
-<div className="table-container">
-  <h3></h3>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Content</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {data.map((doc) => (
-        <tr key={doc._id}>
-          <td>{doc._id}</td>
-          <td>{doc.title || '"saknas"'}</td>
-          <td>{doc.content || '"saknas"'}</td>
-          <td>
-            <button onClick={() => editDocument(doc._id)} style={{ cursor: 'pointer' }}>
-              Redigera
-            </button>
-          </td>
-        </tr>
-      ))}
-    </tbody>
-  </table>
-</div>
+    <div className="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Content</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((doc) => (
+            <tr key={doc._id}>
+              <td>{doc._id}</td>
+              <td>{doc.title || '"saknas"'}</td>
+              <td>{doc.content || '"saknas"'}</td>
+              <td>
+                <button onClick={() => editDocument(doc._id)} style={{ cursor: 'pointer' }}>
+                  Redigera
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 
