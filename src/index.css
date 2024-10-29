@@ -221,6 +221,10 @@ button:focus {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+.comment-section textarea {
+  width: 97.5%;
+}
+
 
 .comment-section button {
   background-color: #007bff;
