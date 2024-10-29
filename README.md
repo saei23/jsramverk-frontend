@@ -115,3 +115,6 @@ Deploy görs nu med
 Akronym ersätts med den användare som deployar till studentservern.
 
 
+### GraphQL Implementation
+
+Added GraphQL fetches to work with graphQL endpoints on backend server.
