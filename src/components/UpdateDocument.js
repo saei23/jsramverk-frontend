@@ -109,14 +109,24 @@ const UpdateDocument = () => {
 
   // Hantera radering av dokument
   const handleDelete = async () => {
-    const confirmDelete = window.confirm('Är du säker på att du vill radera detta dokument?');
+    const confirmDelete = window.confirm('Are you sure you want to delete this document?');
     if (!confirmDelete) return;
-
+  
     try {
-      // Skicka DELETE-förfrågan för att ta bort dokumentet
-      await axios.delete(`https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/${_id}`);
+      await axios.post('http://localhost:1337/graphql', {
+        query: `
+          mutation DeleteDocument($_id: ID!) {
+            deleteDocument(_id: $_id) {
+              _id
+            }
+          }
+        `,
+        variables: {
+          _id
+        }
+      });
       alert('Document deleted successfully!');
-      navigate('/home'); // Navigera tillbaka till hemsidan efter radering
+      navigate('/home');
     } catch (error) {
       console.error('Error deleting document:', error);
       alert('Failed to delete document.');
