@@ -7,6 +7,20 @@ const CreateDocument = ({ refreshData }) => {
     content: ''
   });
 
+  // GraphQL endpoint URL
+  const graphqlEndpoint = 'http://localhost:1337/graphql'; // Replace with your actual GraphQL endpoint
+
+  // Define the GraphQL mutation as a string
+  const GRAPHQL_MUTATION = `
+    mutation addDocument($title: String!, $content: String!) {
+      addDocument(title: $title, content: $content) {
+        _id
+        title
+        content
+      }
+    }
+  `;
+
   // Handle form input changes
   const handleChange = (e) => {
     setDocument({
@@ -21,10 +35,16 @@ const CreateDocument = ({ refreshData }) => {
     console.log("Document to be added (frontend):", document);
 
     try {
-      // Send POST request to backend API (adjust URL as needed)
-      await axios.post('https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net', document);
-      
-      // Optionally, refresh data or reset form
+      // Send POST request with GraphQL mutation to backend API
+      await axios.post(graphqlEndpoint, {
+        query: GRAPHQL_MUTATION,
+        variables: {
+          title: document.title,
+          content: document.content
+        }
+      });
+
+      //refresh data or reset form
       setDocument({ title: '', content: '' });
       if (refreshData) refreshData();
       alert('Document added successfully!');
