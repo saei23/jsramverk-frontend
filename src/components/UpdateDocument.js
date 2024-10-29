@@ -42,11 +42,24 @@ const UpdateDocument = () => {
     return () => newSocket.close();
   }, [_id]);
 
-  // Hämta dokument från servern
   const fetchDocument = async () => {
     try {
-      const result = await axios.get(`https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/${_id}`);
-      setDocument(result.data); 
+      const result = await axios.post('http://localhost:1337/graphql', {
+        query: `
+          query GetDocument($_id: ID!) {
+            document(_id: $_id) {
+              _id
+              title
+              content
+            }
+          }
+        `,
+        variables: {
+          _id
+        }
+      });
+      setDocument(result.data.data.document);
+      setComments(result.data.data.document.comments || []);
     } catch (error) {
       console.error('Error fetching document:', error);
       alert('Could not retrieve the document.');
@@ -69,12 +82,25 @@ const UpdateDocument = () => {
   // Hantera formulärsubmitting för att uppdatera dokumentet
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Document ID to update (frontend):", _id); // Check `_id` before making PUT request
     try {
-      // Skicka PUT-förfrågan för att uppdatera dokumentet
-      await axios.put(`https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/${_id}`, document);
+      await axios.post('http://localhost:1337/graphql', {
+        query: `
+          mutation UpdateDocument($_id: ID!, $title: String, $content: String) {
+            updateDocument(_id: $_id, title: $title, content: $content) {
+              _id
+              title
+              content
+            }
+          }
+        `,
+        variables: {
+          _id,
+          title: document.title,
+          content: document.content
+        }
+      });
       alert('Document updated successfully!');
-      navigate(`/document/${_id}`); // Navigera till dokumentets detaljsida efter uppdatering
+      navigate(`/document/${_id}`);
     } catch (error) {
       console.error('Error updating document:', error);
       alert('Failed to update document.');
