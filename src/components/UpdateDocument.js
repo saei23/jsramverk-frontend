@@ -12,6 +12,9 @@ const UpdateDocument = () => {
   });
 
   const [socket, setSocket] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [selectedLine, setSelectedLine] = useState(null);
+  const [newComment, setNewComment] = useState(null);
 
   // Hämta dokumentet när komponenten monteras
   useEffect(() => {
@@ -26,6 +29,13 @@ const UpdateDocument = () => {
           ...prevDoc,
           content: data.content
         }));
+      }
+    });
+
+    newSocket.on('newComment', (comment) => {
+      if (comment.documentId === _id) {
+        console.log('New comment received:', comment);
+        setComments((prevComments) => [...prevComments, comment]);
       }
     });
 
@@ -87,6 +97,22 @@ const UpdateDocument = () => {
     }
   };
 
+  const handleAddComment = () => {
+    if (newComment && selectedLine != null && socket) {
+      const commentData = {
+        documentId: _id,
+        lineNumber: selectedLine,
+        comment: newComment
+      };
+
+      console.log('Sending comment:', commentData);
+      socket.emit('addComment', commentData);
+      setNewComment('');
+    } else {
+      console.warn("Missing comment or line selection");
+    }
+  };
+
   return (
     <div className="create-document">
       <h2>Uppdatera dokument</h2>
@@ -126,6 +152,33 @@ const UpdateDocument = () => {
           Delete
         </button>
       </form>
+
+      {/* Kommentarer */}
+      <div className="comment-section">
+        <h3>Kommentarer</h3>
+        <select onChange={(e) => setSelectedLine(Number(e.target.value))}>
+          <option value={null}>Välj rad att kommentera</option>
+          {document.content.split('\n').map((_, index) => (
+            <option key={index} value={index}>{`Rad ${index + 1}`}</option>
+          ))}
+        </select>
+        <textarea
+          value={newComment}
+          onChange={(e) => setNewComment(e.target.value)}
+          placeholder="Skriv din kommentar här"
+        ></textarea>
+        <button onClick={handleAddComment}>Lägg till kommentar</button>
+
+        {/* Visa kommentarer */}
+        <div className="comments-list">
+          {comments && comments.map((comment, idx) => (
+            <div key={idx}>
+              <strong>Rad {comment.lineNumber + 1}:</strong>
+              {comment.comment || 'Ingen text'}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
