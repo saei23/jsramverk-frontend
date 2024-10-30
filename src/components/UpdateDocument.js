@@ -42,11 +42,24 @@ const UpdateDocument = () => {
     return () => newSocket.close();
   }, [_id]);
 
-  // Hämta dokument från servern
   const fetchDocument = async () => {
     try {
-      const result = await axios.get(`https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/${_id}`);
-      setDocument(result.data); 
+      const result = await axios.post('http://localhost:1337/graphql', {
+        query: `
+          query GetDocument($_id: ID!) {
+            document(_id: $_id) {
+              _id
+              title
+              content
+            }
+          }
+        `,
+        variables: {
+          _id
+        }
+      });
+      setDocument(result.data.data.document);
+      setComments(result.data.data.document.comments || []);
     } catch (error) {
       console.error('Error fetching document:', error);
       alert('Could not retrieve the document.');
@@ -69,12 +82,25 @@ const UpdateDocument = () => {
   // Hantera formulärsubmitting för att uppdatera dokumentet
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Document ID to update (frontend):", _id); // Check `_id` before making PUT request
     try {
-      // Skicka PUT-förfrågan för att uppdatera dokumentet
-      await axios.put(`https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/${_id}`, document);
+      await axios.post('http://localhost:1337/graphql', {
+        query: `
+          mutation UpdateDocument($_id: ID!, $title: String, $content: String) {
+            updateDocument(_id: $_id, title: $title, content: $content) {
+              _id
+              title
+              content
+            }
+          }
+        `,
+        variables: {
+          _id,
+          title: document.title,
+          content: document.content
+        }
+      });
       alert('Document updated successfully!');
-      navigate(`/document/${_id}`); // Navigera till dokumentets detaljsida efter uppdatering
+      navigate(`/document/${_id}`);
     } catch (error) {
       console.error('Error updating document:', error);
       alert('Failed to update document.');
@@ -83,14 +109,24 @@ const UpdateDocument = () => {
 
   // Hantera radering av dokument
   const handleDelete = async () => {
-    const confirmDelete = window.confirm('Är du säker på att du vill radera detta dokument?');
+    const confirmDelete = window.confirm('Are you sure you want to delete this document?');
     if (!confirmDelete) return;
-
+  
     try {
-      // Skicka DELETE-förfrågan för att ta bort dokumentet
-      await axios.delete(`https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/${_id}`);
+      await axios.post('http://localhost:1337/graphql', {
+        query: `
+          mutation DeleteDocument($_id: ID!) {
+            deleteDocument(_id: $_id) {
+              _id
+            }
+          }
+        `,
+        variables: {
+          _id
+        }
+      });
       alert('Document deleted successfully!');
-      navigate('/home'); // Navigera tillbaka till hemsidan efter radering
+      navigate('/home');
     } catch (error) {
       console.error('Error deleting document:', error);
       alert('Failed to delete document.');
