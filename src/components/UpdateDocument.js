@@ -44,7 +44,7 @@ const UpdateDocument = () => {
 
   const fetchDocument = async () => {
     try {
-      const result = await axios.post('http://localhost:1337/graphql', {
+      const result = await axios.post('https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/graphql', {
         query: `
           query GetDocument($_id: ID!) {
             document(_id: $_id) {
