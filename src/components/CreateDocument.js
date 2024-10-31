@@ -8,7 +8,7 @@ const CreateDocument = ({ refreshData }) => {
   });
 
   // GraphQL endpoint URL
-  const graphqlEndpoint = 'http://localhost:1337/graphql'; // Replace with your actual GraphQL endpoint
+  const graphqlEndpoint = 'https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/graphql'; // Replace with your actual GraphQL endpoint
 
   // Define the GraphQL mutation as a string
   const GRAPHQL_MUTATION = `
