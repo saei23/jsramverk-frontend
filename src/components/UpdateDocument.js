@@ -18,7 +18,7 @@ const UpdateDocument = () => {
 
   // Hämta dokumentet när komponenten monteras
   useEffect(() => {
-    const newSocket = io('http://localhost:1337');
+    const newSocket = io('https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net');
     setSocket(newSocket);
 
     fetchDocument();
@@ -83,7 +83,7 @@ const UpdateDocument = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:1337/graphql', {
+      await axios.post('https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/graphql', {
         query: `
           mutation UpdateDocument($_id: ID!, $title: String, $content: String) {
             updateDocument(_id: $_id, title: $title, content: $content) {
@@ -113,7 +113,7 @@ const UpdateDocument = () => {
     if (!confirmDelete) return;
   
     try {
-      await axios.post('http://localhost:1337/graphql', {
+      await axios.post('https://jsramverk-emlx23-d5hyekcpbdcxdjch.swedencentral-01.azurewebsites.net/graphql', {
         query: `
           mutation DeleteDocument($_id: ID!) {
             deleteDocument(_id: $_id) {
